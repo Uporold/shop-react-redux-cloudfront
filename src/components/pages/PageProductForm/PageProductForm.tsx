@@ -128,7 +128,7 @@ export default function PageProductForm() {
       setIsLoading(false);
       return;
     }
-    axios.get(`https://1kb36gfjt0.execute-api.eu-west-1.amazonaws.com/dev/products/${id}`)
+    axios.get(`${API_PATHS.bff}/${id}`)
       .then(res => {
         setProduct(res.data);
         setIsLoading(false);
