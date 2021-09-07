@@ -1,4 +1,4 @@
-service: aws-task2
+service: aws-rs-fe
 
 frameworkVersion: '2'
 
@@ -18,7 +18,7 @@ plugins:
 
 custom:
   client:
-    bucketName: task2-auto-deploy
+    bucketName: rs-fe
     distributionFolder: build
 
   ## Serverless-single-page-app-plugin configuration:

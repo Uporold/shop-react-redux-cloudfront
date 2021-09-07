@@ -78,6 +78,16 @@ const Form = (props: FormikProps<FormikValues>) => {
             required
           />
         </Grid>
+        <Grid item xs={12}>
+          <Field
+              component={TextField}
+              name="imageSrc"
+              label="Image source url"
+              fullWidth
+              autoComplete="off"
+              required
+          />
+        </Grid>
         <Grid item container xs={12} justify="space-between">
           <Button
             color="primary"
@@ -118,7 +128,7 @@ export default function PageProductForm() {
       setIsLoading(false);
       return;
     }
-    axios.get(`${API_PATHS.bff}/product/${id}`)
+    axios.get(`${API_PATHS.bff}/${id}`)
       .then(res => {
         setProduct(res.data);
         setIsLoading(false);
