@@ -16,7 +16,7 @@ export default function AddProductToCart({product}: AddProductToCartProps) {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
   const cartItem = cartItems.find(i => i.product.id === product.id);
-
+  const isAddAvailable = cartItem && cartItem?.product.count > cartItem.count;
   return (
     <>
     {
@@ -29,11 +29,9 @@ export default function AddProductToCart({product}: AddProductToCartProps) {
             <Typography align="center">
               {cartItem.count}
             </Typography>
-            { cartItem?.product.count > cartItem.count &&
-            <IconButton onClick={() => dispatch(addToCart(product))}>
-              <Add color={"secondary"}/>
+            <IconButton onClick={() => dispatch(addToCart(product))} disabled={!isAddAvailable}>
+              <Add color={isAddAvailable ? "secondary" : "disabled"}/>
             </IconButton>
-            }
             </>
         )
         :
