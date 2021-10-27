@@ -7,19 +7,36 @@ import {Provider} from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import axios from 'axios';
+import {getIDToken} from "./utils/utils";
 
 axios.interceptors.response.use(
   response => {
+    console.log('response', JSON.stringify(response))
     return response;
   },
   function(error) {
-    if (error?.response?.status === 400) {
+    const status = error?.response?.status;
+    if (status === 400) {
       alert(error.response.data?.data);
     }
+
+      if (status === 401 || status === 403) {
+          alert(error.response.data?.message);
+      }
 
     return Promise.reject(error?.response ?? error);
   }
 );
+
+const token = getIDToken();
+console.log(token);
+if (token) {
+  localStorage.setItem('token', token);
+}
+
+localStorage.setItem('username', 'uporold')
+localStorage.setItem('password', 'TEST_PASSWORD')
+
 
 ReactDOM.render(
   <React.StrictMode>

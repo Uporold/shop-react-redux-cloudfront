@@ -16,7 +16,9 @@ export default function ProductsTable() {
   const [products, setProducts] = useState<any>([]);
 
   useEffect(() => {
-    axios.get(API_PATHS.bff)
+    axios.get(API_PATHS.bff, {
+      headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`}
+    })
         .then(res => setProducts(res.data.cards));
   }, []);
 

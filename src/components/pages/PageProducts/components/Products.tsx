@@ -35,9 +35,10 @@ const useStyles = makeStyles((theme) => ({
 export default function Products() {
   const classes = useStyles();
   const [products, setProducts] = useState<Product[]>([]);
-
   useEffect(() => {
-    axios.get(API_PATHS.bff)
+    axios.get(API_PATHS.bff, {
+      headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`}
+    })
       .then(res => setProducts(res.data.cards));
     // setProducts(productList);
   }, [])
